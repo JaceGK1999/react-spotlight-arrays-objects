@@ -3,27 +3,53 @@
 // OUTPUT: the value of the 'name' attribute i.e. Benny
 // REQS: use destructuring and the function should be a single line
 
-export const getName = () => {}
+export const getName = ({ name }) => name
 
 // INPUT: an object with a nested "address" attribute such as
 //   {name: 'Bob Smith', address: {street: 'Main Street', number: 123, city: 'Anytown', country: 'USA}}
 // OUTPUT: the string 'Bob Smith lives at 123 Main Street, Anytown, USA'
 // REQS: use destructuring and template literals
 
-export const printAddress = () => {}
+export const printAddress = (obj) => {
+  const { name } = obj
+  const { address } = obj
+  let street = address.street
+  let number = address.number
+  let city = address.city
+  let country = address.country
+  return `${name} lives at ${number} ${street}, ${city}, ${country}`
+}
 
 // REFACTOR CHALLENGE
 // Refactor this function so that all values in the object are destructured
 // as part of the funciton definitions (i.e. there should be no dots in the template literals)
-export const printUserInfo = (user) => {
-  return `
-    Username: ${user.username},
-    Full Name: ${user.name.first} ${user.name.last},
-    Favorite Color: ${user.info.favorites.color},
-    Favorite Food: ${user.info.favorites.food},
-    Pet Name: ${user.info.pet.name},
-    Address: ${user.info.address.number} ${user.info.address.street}, ${user.info.address.city}, ${user.info.address.country}
-    `
+export const printUserInfo = (...user) => {
+  // const { username } = user
+  // const { name } = user
+  // const info = user
+  // let name = name.first
+  // console.log(name)
+  console.log('user', user)
+
+  let username = 
+  console.log('username', username)
+
+  return
+  ;`Username: ${username}
+  Full Name: ${firstName} ${lastName}
+  Favorite Color: ${favoriteColor}
+  Favorite Food: ${favoriteFood}
+  Pet Name: ${petName}
+  Address: ${address}`
+
+  // `
+  //   Username: ${user.username},
+  //   Full Name: ${user.name.first} ${user.name.last},
+  //   Favorite Color: ${user.info.favorites.color},
+  //   Favorite Food: ${user.info.favorites.food},
+  //   Pet Name: ${user.info.pet.name},
+  //   Address: ${user.info.address.number} ${user.info.address.street}, ${user.info.address.city}, ${user.info.address.country}
+  //   `
 }
 
 // INPUT: an unknown number of input arguments, all numbers
@@ -31,7 +57,13 @@ export const printUserInfo = (user) => {
 // REQS: use rest parameters
 //  getSum(1, 2, 3) === 6
 //  getSum(1, 2, 3, 4, 5) === 15
-export const getSum = () => {}
+export const getSum = (...numbers) => {
+  let totalSum = 0
+  for (let [i] in numbers) {
+    totalSum += numbers[i]
+  }
+  return totalSum
+}
 
 // INPUT: an unknown number of arguments
 // OUTPUT: an array with the first two arguments destructured and the remaining in a nested array
